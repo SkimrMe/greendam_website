@@ -37,12 +37,28 @@ async def reload_301():
 async def home(request: Request):
     return templates.TemplateResponse(
         "home.html",
-        {"request": request}
+        {
+            "request": request,
+            "title": "home"
+        }
     )
 
 @app.get("/resources/")
 async def resources(request: Request):
     return templates.TemplateResponse(
         "resources.html",
-        {"request": request}
+        {
+            "request": request,
+            "title": "resources"
+        }
+    )
+
+@app.get("/bbs/")
+async def bbs(request: Request):
+    return templates.TemplateResponse(
+        "bbs.html",
+        {
+            "request": request,
+            "title": "bbs"
+        },
     )
