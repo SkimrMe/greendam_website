@@ -44,14 +44,24 @@ async def home(request: Request):
     )
 
 @app.get("/resources/")
-async def resources(request: Request):
-    return templates.TemplateResponse(
-        "resources.html",
-        {
-            "request": request,
-            "title": "resources"
-        }
-    )
+@app.get("/resources/{name}")
+async def resources(request: Request, name: str = None):
+    if not  name:
+        return templates.TemplateResponse(
+            "resources/home.html",
+            {
+                "request": request,
+                "title": "resources"
+            }
+        )
+    else:
+        return templates.TemplateResponse(
+            "resources/test.html",
+            {
+                "request": request,
+                "name": f"{name}"
+            }
+        )
 
 @app.get("/bbs/")
 async def bbs(request: Request):

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>绿坝娘资源小站 (仮) | {{ name }}</title>
+    </head>
+    <body>
+        <a href="/resources">返回上级</a>
+        <br>
+        <h1>Index of /{{ name }}</h1>
+        <hr>
+        <div id="content">
+        </div>
+        <hr>
+    </body>
+</html>
+
+<script>
+    fetch("https://greendam.ww3.tw/api/files/list/{{ name }}/")
+    .then(res => res.json())
+    	.then (data => {
+		data.forEach(item => {
+			console.log('ID', item.id);
+			console.log('Name', item.filename);
+			console.log('URL', item.url_path);
+
+            let contentDocment = `<a href="${item.url_path}">${item.filename}</a><br>`
+            document.getElementById("content").innerHTML += contentDocment
+		})
+	})
+</script>
