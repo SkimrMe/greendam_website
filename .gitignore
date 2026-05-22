@@ -3,3 +3,4 @@
 databases/**
 json/**
 **/static/resources/**
+**/test/**

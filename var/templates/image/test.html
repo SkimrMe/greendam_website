@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>{{ name }}</title>
+    </head>
+    <body>
+        <h2>图片预览_{{ name }}<a href="../">返回上级../</a></h2>
+        <div id="content"></div>
+    </body>
+    <script>
+        fetch('https://greendam.ww3.tw/api/image/list/{{ name }}/')
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(item => {
+                console.log("ID", item.id)
+                console.log("Name", item.filename)
+                console.log("Url", item.url_path)
+
+                let content_Document = `<img src="${item.url_path}" alt="${item.filename}"  style="width: 10%;" loading="lazy">${item.id}`
+                document.getElementById('content').innerHTML += content_Document
+            })
+        })
+    </script>
+    
+</html>

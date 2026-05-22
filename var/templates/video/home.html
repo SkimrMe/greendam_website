@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>绿坝娘资源小站 (仮) | {{ title }}</title>
+        <link rel="icon" type="image/png" sizes="128x128" href="/static/src/img/logo.png">
+    </head>
+    <body>
+        <h2>视频导览<a href="/resources">../返回上级</a></h2>
+        <br>
+        <div id="list"></div>
+    </body>
+    <script>
+        fetch('https://greendam.ww3.tw/api/video/list/')
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(item => {
+                console.log("ID", item.id)
+                console.log("Name", item.filename)
+                console.log("Url", item.url_path)
+
+                let list_Document = `<a href="./${item.filename}">${item.filename}</a>__`
+                document.getElementById('list').innerHTML += list_Document
+            })
+        })
+    </script>
+</html>

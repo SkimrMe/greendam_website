@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>绿坝娘资源小站 (仮) | {{ name }}</title>
+        <link rel="icon" type="image/png" sizes="128x128" href="/static/src/img/logo.png">
+    </head>
+    <body>
+        {{ name }}
+        <div id="content"></div>
+    </body>
+    <script>
+        fetch('https://greendam.ww3.tw/api/video/list/{{ name }}/')
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(itme => {
+                console.log("ID", itme.id)
+                console.log("Name", itme.filename)
+                console.log("Url", itme.url_path)
+
+                let video_Document = `<br><br><b>${itme.filename}</b><br><br><hr><video width="25%" controls><source src=${itme.url_path} type="video/mp4"></video><br>`
+                document.getElementById('content').innerHTML += video_Document
+            })
+        })
+    </script>
+</html>

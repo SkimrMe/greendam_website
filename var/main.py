@@ -44,7 +44,7 @@ async def home(request: Request):
     )
 
 @app.get("/resources/")
-@app.get("/resources/{name}")
+@app.get("/resources/{name}/")
 async def resources(request: Request, name: str = None):
     if not  name:
         return templates.TemplateResponse(
@@ -72,3 +72,43 @@ async def bbs(request: Request):
             "title": "bbs"
         },
     )
+
+@app.get("/image/")
+@app.get("/image/{name}/")
+async def image(request: Request, name: str = None):
+    if not name:
+        return templates.TemplateResponse(
+            "image/home.html",
+            {
+                "request": request,
+                "title": "image"
+            }
+        )
+    else:
+        return templates.TemplateResponse(
+            "image/test.html",
+            {
+                "request": request,
+                "name": f"{name}"
+            }
+        )
+    
+@app.get("/video/")
+@app.get("/video/{name}/")
+async def video(request: Request, name: str = None):
+    if not name:
+        return  templates.TemplateResponse(
+            "video/home.html",
+            {
+                "request": request,
+                "title": "video"
+            }
+        )
+    else:
+        return templates.TemplateResponse(
+            "video/test.html",
+            {
+                "request": request,
+                "name": f"{name}"
+            }
+        )

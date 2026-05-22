@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>选择不同版本的小绿</title>
+    </head>
+    <body>
+        <h2>选择不同版本的小绿<a href="/image">__>重新刷新</h2>
+        <div id="list"></div>
+    </body>
+</html>
+    <script>
+        fetch('https://greendam.ww3.tw/api/image/list/')
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(item => {
+                console.log('ID', item.id);
+                console.log('Name', item.filename);
+                console.log('URL', item.url_path);
+
+                document.getElementById('list').innerHTML += `<a href="/image/${item.filename}"><b>${item.filename}</b></a>___`
+            })
+        })
+    </script>
